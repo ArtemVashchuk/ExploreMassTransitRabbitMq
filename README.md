@@ -1,0 +1,2 @@
+# ExploreMassTransitRabbitMq
+Explore MassTransitRabbitMq library
