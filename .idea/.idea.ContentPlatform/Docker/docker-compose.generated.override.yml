@@ -1,0 +1,41 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.4"
+services:
+  newsletter-api:
+    build:
+      context: "C:\\Users\\Artem Vashchuk\\Downloads\\source-code\\before\\ContentPlatform"
+      dockerfile: "Newsletter.Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/Newsletter.Api.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "newsletter-api:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\Artem Vashchuk\\Downloads\\source-code\\before\\ContentPlatform\\\
+      Newsletter.Api:/app:rw"
+    - "C:\\Users\\Artem Vashchuk\\Downloads\\source-code\\before\\ContentPlatform:/src:rw"
+    - "C:\\Users\\Artem Vashchuk\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app"
+  newsletter-reporting-api:
+    build:
+      context: "C:\\Users\\Artem Vashchuk\\Downloads\\source-code\\before\\ContentPlatform"
+      dockerfile: "Newsletter.Reporting.Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net7.0/Newsletter.Reporting.Api.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "newsletter-reporting-api:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\Artem Vashchuk\\Downloads\\source-code\\before\\ContentPlatform\\\
+      Newsletter.Reporting.Api:/app:rw"
+    - "C:\\Users\\Artem Vashchuk\\Downloads\\source-code\\before\\ContentPlatform:/src:rw"
+    - "C:\\Users\\Artem Vashchuk\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app"
