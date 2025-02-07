@@ -25,6 +25,8 @@ builder.Services.AddMassTransit(busConfigurator =>
 {
     busConfigurator.SetKebabCaseEndpointNameFormatter();
     
+    busConfigurator.AddConsumers(assembly);
+    
     busConfigurator.UsingRabbitMq((context, configurator) =>
     {
         configurator.Host(new Uri(builder.Configuration["MessageBroker:Host"]!), h =>
