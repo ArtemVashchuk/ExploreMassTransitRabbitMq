@@ -3,7 +3,7 @@ using MassTransit;
 using Newsletter.Reporting.Api.Database;
 using Newsletter.Reporting.Api.Entities;
 
-namespace Newsletter.Reporting.Api.Features;
+namespace Newsletter.Reporting.Api.Features.Articles;
 
 public sealed class ArticleCreatedConsumer(ApplicationDbContext dbContext) : IConsumer<ArticleCreatedEvent>
 {

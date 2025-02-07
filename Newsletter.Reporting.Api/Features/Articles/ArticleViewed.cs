@@ -3,11 +3,11 @@ using MassTransit;
 using Newsletter.Reporting.Api.Database;
 using Newsletter.Reporting.Api.Entities;
 
-namespace Newsletter.Reporting.Api.Features;
+namespace Newsletter.Reporting.Api.Features.Articles;
 
 public sealed class ArticleViewedConsumer(ApplicationDbContext dbContext) : IConsumer<ArticleViewedEvent>
 {
-    public Task Consume(ConsumeContext<ArticleViewedEvent> context)
+    public async Task Consume(ConsumeContext<ArticleViewedEvent> context)
     {
         var article = dbContext
             .Articles
@@ -20,8 +20,13 @@ public sealed class ArticleViewedConsumer(ApplicationDbContext dbContext) : ICon
 
         var articleEvent = new ArticleEvent
         {
-            ArticleId = context.Message.Id,
-            
+            Id = Guid.NewGuid(),
+            ArticleId = article.Id,
+            CreatedOnUtc = context.Message.ViewedOnUtc,
+            EventType = ArticleEventType.View
         };
+
+        await dbContext.AddAsync(articleEvent);
+        await dbContext.SaveChangesAsync(context.CancellationToken);
     }
 }
